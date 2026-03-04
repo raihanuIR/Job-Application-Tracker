@@ -2,10 +2,10 @@ let currentTab="all";
 const tabActive = ["bg-orange-500","border-orange-200" ,"text-white"];
 const tabInactive = ["bg-transparent", "text-slate-700", "border-slate-200"];
 
-const allContainer = document.getElementById("all-container")
-const interviewContainer = document.getElementById("interview-container")
-const rejectContainer = document.getElementById("reject-container")
-console.log(allContainer,interviewContainer,rejectContainer)
+const allContainer = document.getElementById("all-container");
+const interviewContainer = document.getElementById("interview-container");
+const rejectContainer = document.getElementById("reject-container");
+const emptyState = document.getElementById("empty-state");
 
 function switchTab(tab){
 
@@ -45,7 +45,7 @@ const totalstat = document.getElementById("stat-total");
 const interviewstat = document.getElementById("stat-interview");
 const rejectstat = document.getElementById("stat-reject");
 
-totalstat.innerText = allContainer.children.length;
+//totalstat.innerText = allContainer.children.length;
 
 switchTab(currentTab);
 
@@ -53,21 +53,31 @@ document.getElementById("jobs-container").addEventListener("click", function(eve
     const clickedElement = event.target;
     const card = clickedElement.closest(".card");
     const status = card.querySelector(".status");
+    const parent = card.parentNode;
 
     if(clickedElement.classList.contains("interview")){
         interviewContainer.appendChild(card);
         status.innerText = "Interviewed";
+        updateStat();
     }
     if(clickedElement.classList.contains("rejected")){
         rejectContainer.appendChild(card);
         status.innerText = "Rejected";
+        updateStat();
     }
     if(clickedElement.classList.contains("delete")){
-        //console.log("delete clicked")
+        parent.removeChild(card);
+        updateStat();
     }
 });
 
+function updateStat(){
+    totalstat.innerText = allContainer.children.length;
+    interviewstat.innerText = interviewContainer.children.length;
+    rejectstat.innerText = rejectContainer.children.length;
+}
 
+updateStat();
 
 
 
