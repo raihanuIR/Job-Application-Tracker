@@ -1,0 +1,21 @@
+1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
+
+getElementById is like calling someone by their unique Social Security Number. You can only find one thing with a unique ID name. So, getElementById is the fastest and best way to grab something like your Total counter. getElementsByClassName is like asking everybody in the class to stand up if they are wearing a red shirt. You can grab all your job cards at once because it finds all elements with a certain class name. 
+
+querySelector is basically the ultimate all-in-one tool because it allows you to grab the very first thing that fits your description. It allows you to use the CSS style syntax to search for the class or id of your element. querySelectorAll is basically the same as querySelector, except that instead of stopping at the first thing it finds with that class or id, it finds all of them on the page. This can be useful in order to change the style or hide all of your job cards at once.
+
+2. How do you create and insert a new element into the DOM?
+
+The process of creating and inserting a new element into the DOM is a two-part process where first, a tag is created using the document.createElement function, and then it is customized using properties such as innerText and classList.add to define its look. Once it is customized, it is displayed on the page by appending it to an existing parent element using methods such as appendChild, where it is appended to the end of the parent element, and prepend, where it is appended to the beginning of the parent element. This process is what is followed to dynamically update a jobs-container element with new job cards as they are added to an application tracker.
+
+3. What is Event Bubbling? And how does it work?
+
+It is a process where a single click event occurs and travels up through all of its parent layers. For example, if you were to click on a button inside a card, it would first recognize the click event on the button, and then it would recognize it on the card, and then it would recognize it on the page. This is because they are nested inside of each other, and it is notifying each one of them, starting from the inside and working its way out. This is very useful for having one single listener on a page for all of the buttons inside of it, making it very clean and simple. However, if you want it to only happen on one single spot, you would use a command called stopPropagation.
+
+4. What is Event Delegation in JavaScript? Why is it useful?
+
+Event delegation is a JavaScript technique where one event listener is attached to a parent element rather than attaching separate event listeners to all child elements. This is possible because of event bubbling, where a click event on a child element bubbles up to its parent element. This way, the parent element is able to determine which of its children was clicked by looking at the event.target property. This is very useful for performance because it saves memory consumption of the browser, especially for large lists of items or many buttons. It is also very useful for reducing code complexity because new elements added to the parent container automatically inherit the event listener without having to attach a new event listener for them. For instance, for a job tracker application, one event listener attached to the parent container of all job cards can handle the delete feature for all job cards, even those dynamically added after page loading.
+
+5. What is the difference between preventDefault() and stopPropagation() methods?
+
+The primary difference between these two methods is that preventDefault() stops a default action of the browser, such as a page reloading after a form is submitted or a link clicking and opening a different URL, while stopPropagation() stops an event from propagating up through the layers of HTML structure. The application tracker will use preventDefault() so that when a button is clicked, it will execute a custom JavaScript function without reloading the page, and it will use stopPropagation() so that it will not execute a function that is attached to its surrounding job card or container. The difference between these two is that one is controlling what the browser does automatically, and the other is controlling how far the signal is propagated.
